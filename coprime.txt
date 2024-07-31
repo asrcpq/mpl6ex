@@ -1,0 +1,17 @@
+mod30(0)
+mod50(0)
+notyet(0)
+# mod 3
+mod31(2) < mod30(1) s(1,2)
+mod32(2) < mod31(1) s(1,2)
+mod30(2) < mod32(1) s(1,2)
+# mod 5
+mod51(2) < mod50(1) s(1,2)
+mod52(2) < mod51(1) s(1,2)
+mod53(2) < mod52(1) s(1,2)
+mod54(2) < mod53(1) s(1,2)
+mod50(2) < mod54(1) s(1,2)
+# coprime
+coprime35(1) < mod50(1) mod31(1)
+notyet > !s
+notyet(1) < s(2,1) !coprime35(1)

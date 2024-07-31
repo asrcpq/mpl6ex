@@ -1,0 +1,54 @@
+permc(s3)
+value(s1,1)
+value(s2,2)
+value(s3,3)
+s(nil,s1)
+s(s1,s2)
+s(s2,s3)
+permr(r2)
+u_e(r1,1)
+v_e(r1,2)
+u_e(r2,2)
+v_e(r2,3)
+s(nil,r1)
+s(r1,r2)
+isnil(nil)
+
+# comb invented constant becomes head of input tape
+comb(1,2) < permc(1) permr(2)
+comb > pc pr
+wrel(1,2) < pr(1,2)
+encrel(1,2) < pr(1,2)
+pc(3,2) < pc(1,2) trunk(1,3)
+
+cntc(1,3) < encrel(1,2) u_e(2,3)
+cfind(1,2) < cntc(1,3) pc(1,2)
+cfind(1,3) < cfind(1,2) s(3,2)
+cfound?(1,3) < cntc(1,2) value(3,2)
+cfound(1,2) < cfind(1,2) cfound?(1,2)
+
+# count
+count(1,3) < cntc(1,2) pc(1,3)
+count > !cchain fwd
+trunk(1,2) < cchain(1,2)
+cfound(2,3) < cchain(1,2) cfound(1,3)
+countok(1) < fwd(1,2) cfound(1,2)
+countko(1,2) < fwd(1,2) !cfound(1,2)
+count(1,3) < countko(1,2) s(3,2)
+cnt(1) < count(1,2)
+
+wrel(3,2) < cchain(1,3) wrel(1,2)
+wrel2(3,2) < cchain(1,3) wrel2(1,2)
+wp(1,2) < wrel(1,2) countok(1)
+r_e(1) < wp(1,2) u_e(2,3)
+wp > !w2 wok
+trunk(1,2) < w2(1,2)
+wrel2(3,2) < w2(1,3) wrel(1,2)
+cntc(1,3) < wok(1,2) v_e(2,3)
+wp2(1,2) < wrel2(1,2) countok(1)
+sep(1) < wp2(1,2)
+
+wp2 > !trunk next
+pr(1,3) < next(1,2) s(3,2)
+tapein(1) < pr(1,2) isnil(2)
+sep(1) < tapein(1)

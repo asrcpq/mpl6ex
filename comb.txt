@@ -1,0 +1,7 @@
+odd(1)
+odd(3)
+odd(5)
+even(2)
+even(4)
+even(6)
+pair(1,2) < odd(1) even(2)

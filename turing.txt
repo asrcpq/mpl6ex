@@ -1,0 +1,75 @@
+
+qa(l1,r1)
+trunk(l1,l0)
+trunk(r1,r0)
+s(1,2) < trunk(1,2)
+v0(l0)
+v0(r0)
+palloc > trunk
+v0(2) < trunk(2,1)
+calloc1(2) < trunk(2,1) v0(1)
+calloc0(2) < trunk(2,1) v1(1)
+calloc0 > !s assign0
+v0(1) < assign0(1,2)
+calloc1 > !s assign1
+v1(1) < assign1(1,2)
+findc0(1,2) < s(1,2) v0(2)
+findc1(1,2) < s(1,2) v1(2)
+a0(1,2) < qa(1,2) v0(2)
+a1(1,2) < qa(1,2) v1(2)
+b0(1,2) < qb(1,2) v0(2)
+b1(1,2) < qb(1,2) v1(2)
+c0(1,2) < qc(1,2) v0(2)
+c1(1,2) < qc(1,2) v1(2)
+
+palloc(2) < a0(1,2) trunk(2,3)
+rp_a0(1,3) < a0(1,2) s(3,2)
+# left
+calloc1(1) < rp_a0(1,2) !trunk(1,3)
+qb(3,2) < rp_a0(1,2) findc1(1,3)
+
+palloc(2) < a1(1,2) trunk(2,3)
+rp_a1(1,3) < a1(1,2) s(3,2)
+# left
+calloc1(1) < rp_a1(1,2) !trunk(1,3)
+qh(3,2) < rp_a1(1,2) findc1(1,3)
+
+palloc(2) < b0(1,2) trunk(2,3)
+rp_b0(1,3) < b0(1,2) s(3,2)
+# left
+calloc0(1) < rp_b0(1,2) !trunk(1,3)
+qc(3,2) < rp_b0(1,2) findc0(1,3)
+
+palloc(2) < b1(1,2) trunk(2,3)
+rp_b1(1,3) < b1(1,2) s(3,2)
+# left
+calloc1(1) < rp_b1(1,2) !trunk(1,3)
+qb(3,2) < rp_b1(1,2) findc1(1,3)
+
+palloc(2) < c0(1,2) trunk(2,3)
+rp_c0(1,3) < c0(1,2) s(3,2)
+calloc1(2) < rp_c0(1,2) !trunk(2,3)
+rv_c0(1,3) < rp_c0(1,2) findc1(2,3)
+rc0_c0(1,2) < rv_c0(1,2) v0(1)
+rc1_c0(1,2) < rv_c0(1,2) v1(1)
+calloc0(2) < rc0_c0(1,2) !trunk(2,3)
+calloc1(2) < rc1_c0(1,2) !trunk(2,3)
+rc_c0(1,3) < rc0_c0(1,2) findc0(2,3)
+rc_c0(1,3) < rc1_c0(1,2) findc1(2,3)
+# left
+palloc(1) < rc_c0(1,2) trunk(1,3)
+qc(3,2) < rc_c0(1,2) s(3,1)
+
+palloc(2) < c1(1,2) trunk(2,3)
+rp_c1(1,3) < c1(1,2) s(3,2)
+calloc1(2) < rp_c1(1,2) !trunk(2,3)
+rv_c1(1,3) < rp_c1(1,2) findc1(2,3)
+rc0_c1(1,2) < rv_c1(1,2) v0(1)
+rc1_c1(1,2) < rv_c1(1,2) v1(1)
+calloc0(2) < rc0_c1(1,2) !trunk(2,3)
+calloc1(2) < rc1_c1(1,2) !trunk(2,3)
+rc_c1(1,3) < rc0_c1(1,2) findc0(2,3)
+rc_c1(1,3) < rc1_c1(1,2) findc1(2,3)
+# left
+palloc(1) < rc_c1(1,2) trunk(1,3)
+qa(3,2) < rc_c1(1,2) s(3,1)
